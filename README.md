@@ -1,4 +1,4 @@
-# 2_projeto_vue
+# make_your-burger
 
 ## Project setup
 ```
