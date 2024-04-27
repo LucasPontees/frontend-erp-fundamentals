@@ -1,5 +1,9 @@
 # make_your-burger
 
+ <div align="center">
+    <img width="180px" src="./public/img/readme.png" alt="atxsales" />
+  </div>
+
 ## Project setup
 ```
 npm install
