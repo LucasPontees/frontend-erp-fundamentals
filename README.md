@@ -1,7 +1,7 @@
 # make_your-burger
 
  <div align="center">
-    <img width="180px" src="public/readme.png" alt="make-your-burger" />
+    <img width="500px" src="public/readme.png" alt="make-your-burger" />
   </div>
 
 ## Project setup
