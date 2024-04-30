@@ -14,6 +14,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "pedidos" */ '../views/Pedidos.vue')
+  },
+  {
+    path: '/pdv',
+    name: 'pdv',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "pedidos" */ '../views/Pdv.vue')
   }
 ]
 
