@@ -2,21 +2,21 @@
     <div>
         <Message :msg="msg" v-show="msg"/>
 
-        <div>
+        <div class="burger-form-container">
             <form action="" id="burger-form" @submit="createBurger">
                 <div class="input-container">
                     <label for="nome">Nome do cliente</label>
                     <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome" required>
                 </div>
                 <div class="input-container">
-                    <label for="pao">Escolha o paô:</label>
+                    <label for="pao">Escolha o pão:</label>
                     <select name="pao" id="pao" v-model="pao" required>
                         <option value="">Selecione o seu paô</option>
                         <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">{{ pao.tipo }}</option>
                     </select>
                 </div>
                 <div class="input-container">
-                    <label for="carne">Escolha a carne do seu buger:</label>
+                    <label for="carne">Escolha a carne do seu burger:</label>
                     <select name="carne" id="carne" v-model="carne" required>
                         <option value="">Selecione o tipo da carne</option>
                         <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">{{ carne.tipo }}</option>
@@ -105,6 +105,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 #burger-form {
     max-width: 400px;
     margin: 0 auto;

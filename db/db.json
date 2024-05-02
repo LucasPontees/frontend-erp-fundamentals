@@ -79,37 +79,17 @@
   ],
   "burgers": [
     {
-      "id": "92a1",
-      "nome": "tiaguete",
-      "carne": "Maminha",
-      "pao": "Ciabatta",
+      "id": "288c",
+      "nome": "Aurelio delas e deles",
+      "carne": "Veggie burger",
+      "pao": "Brioche",
       "opcionais": [
         "Bacon",
-        "Pepino",
-        "Cheddar"
-      ],
-      "status": "Em produção"
-    },
-    {
-      "id": "3387",
-      "nome": "Marcela",
-      "carne": "Alcatra",
-      "pao": "Integral",
-      "opcionais": [
-        "Bacon",
-        "Tomate",
-        "Pepino"
-      ],
-      "status": "Solicitado"
-    },
-    {
-      "id": "f66f",
-      "nome": "Joao",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
-      "opcionais": [
         "Salame",
-        "Tomate"
+        "Cebola roxa",
+        "Pepino",
+        "Tomate",
+        "Cheddar"
       ],
       "status": "Solicitado"
     }
