@@ -87,9 +87,20 @@
 
       <div v-show="!isTelaPdvVisible">
         <div class="row" id="tela_pesquisa_produto">
-          <div class="col-lg-12 col-md-12">
-            <div class="card">
-              <div class="card-header">
+          <div class="col-lg-12 col-md-12" style="height: 65vh">
+            <div class="input-group gap-4">
+              <input
+                type="text"
+                class="form-control text-start"
+                placeholder="Código ID, Código Interno, Descrição, Código de Barra"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-success" type="button">
+                  <i class="bi bi-search-heart-fill"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body mt-3 table-responsive" style="max-height: 500px; overflow-y: auto; overflow-x: hidden">
                 <table class="table table-bordered table-nowrap">
                   <thead style="position: sticky; top: 0; z-index: 1">
                     <tr>
@@ -97,7 +108,7 @@
                       <th class="text-start" style="width: 50%">Produto</th>
                       <th class="text-center" style="width: 10%">Unid.Venda</th>
                       <th class="text-left" style="width: 10%">ValorVenda</th>
-                      <th class="text-left" style="width: 10%">#</th>
+                      <th class="text-center" style="width: 10%">#</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -108,11 +119,9 @@
                       <td>{{ produto.unidadeMedida }}</td>
                       <td>{{ produto.valor }}</td>
                       <td class="text-center"><button><i class="bi bi-pencil-square"></i></button></td>
-
                     </tr>
                   </tbody>
                 </table>
-              </div>
             </div>
             <button
               @click="voltarTelaPdv"
