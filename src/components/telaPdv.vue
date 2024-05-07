@@ -102,7 +102,7 @@
                   <tbody>
                     <!-- Linhas da tabela - Aqui você pode iterar sobre os produtos e exibi-los -->
                     <tr v-for="(produto, index) in produtos" :key="index">
-                      <td>{{ produto.codigo }}</td>
+                      <td>{{ produto.id }}</td>
                       <td>{{ produto.descricao }}</td>
                       <td>{{ produto.unidadeMedida }}</td>
                       <td>{{ produto.valor }}</td>
