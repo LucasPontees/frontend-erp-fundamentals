@@ -3,8 +3,9 @@
         <router-link  to="/" id="logo-url">
             <img  :src="logo" :alt="alt" id="logo">
         </router-link>
-        <router-link to="/">Home</router-link>
-        <router-link to="/pedidos">Pedidos</router-link>
+        <!-- <router-link to="/">Home</router-link> -->
+        <router-link to="/cadastroUsers">Cadastrar usuários</router-link>
+        <router-link to="/cadastroProducts">Cadastrar Produtos</router-link>
         <router-link to="/Pdv">Pdv</router-link>
     </nav>
 </template>
