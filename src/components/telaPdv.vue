@@ -19,13 +19,17 @@
                 <div class="d-flex flex-column gap-5 mt-3">
                   <div class="d-flex flex-column gap-3">
                     <Inputs placeholder="Quantidade" />
-                    <Inputs placeholder="Valor" disabled="true"/>
-                    <Inputs placeholder="Total" disabled="true"/>
+                    <Inputs placeholder="Valor" disabled="true" />
+                    <Inputs placeholder="Total" disabled="true" />
                   </div>
                   <div class="d-flex justify-content-center img-thumbnail">
-                    <img src="/img/Burger.jpg" alt="" height="150px" width="auto">
+                    <img
+                      src="/img/Burger.jpg"
+                      alt=""
+                      height="150px"
+                      width="auto"
+                    />
                   </div>
-
                 </div>
               </div>
             </div>
@@ -84,16 +88,35 @@
       <div v-show="!isTelaPdvVisible">
         <div class="row" id="tela_pesquisa_produto">
           <div class="col-lg-12 col-md-12">
-            <div class="card" style="height: 75vh">
-              <div class="card-body">
-                <button
-                  @click="voltarTelaPdv"
-                  class="btn mb-0 btn-primary btn-block w-100"
-                >
-                  <i class="fas fa-plus me-1"></i> Voltar para PDV
-                </button>
+            <div class="card">
+              <div class="card-header">
+                <table class="table table-bordered table-nowrap">
+                  <thead style="position: sticky; top: 0; z-index: 1">
+                    <tr>
+                      <th class="text-start" style="width: 10%">Código</th>
+                      <th class="text-start" style="width: 50%">Produto</th>
+                      <th class="text-center" style="width: 10%">Unid.Venda</th>
+                      <th class="text-left" style="width: 10%">ValorVenda</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Linhas da tabela - Aqui você pode iterar sobre os produtos e exibi-los -->
+                    <tr v-for="(produto, index) in produtos" :key="index">
+                      <td>{{ produto.codigo }}</td>
+                      <td>{{ produto.descricao }}</td>
+                      <td>{{ produto.unidadeMedida }}</td>
+                      <td>{{ produto.valor }}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
+            <button
+              @click="voltarTelaPdv"
+              class="btn mb-0 btn-primary btn-block w-100"
+            >
+              <i class="fas fa-plus me-1"></i> Voltar para PDV
+            </button>
           </div>
         </div>
       </div>
@@ -102,6 +125,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Inputs from "./utilsPdv/Inputs.vue";
 import Lines from "./utilsPdv/Lines.vue";
 export default {
@@ -110,12 +134,29 @@ export default {
     return {
       isTelaPdvVisible: true,
       numTimes: 5,
+      unidadeMedida: "",
+      valor: "",
+      produtos: [],
+      descricao: "",
     };
   },
   methods: {
     voltarTelaPdv() {
       this.isTelaPdvVisible = true;
     },
+    loadProducts() {
+      axios
+        .get("http://localhost:3000/products")
+        .then((response) => {
+          this.produtos = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  mounted() {
+    this.loadProducts();
   },
   components: {
     Inputs,
