@@ -118,7 +118,7 @@
                       <td>{{ produto.descricao }}</td>
                       <td>{{ produto.unidadeMedida }}</td>
                       <td>{{ produto.valor }}</td>
-                      <td class="text-center"><button><i class="bi bi-pencil-square"></i></button></td>
+                      <td class="text-center"><button class="btn btn-success"><i class="bi bi-pencil-square"></i></button></td>
                     </tr>
                   </tbody>
                 </table>

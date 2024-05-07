@@ -6,7 +6,7 @@
         <form @submit.prevent="submitForm">
           <div class="form-group">
             <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" v-model="descricao" />
+            <input type="text" id="descricao" v-model="descricao" required />
           </div>
           <div class="form-group">
             <label for="unidade">Unidade de Medida:</label>
@@ -32,10 +32,11 @@
               placeholder="Código ID, Código Interno, Descrição, Código de Barra"
               v-model="searchQuery"
               @keypress.enter="searchProducts"
+              autofocus="true"
             />
             <div class="input-group-append">
               <div class="d-flex gap-3">
-                <button class="btn btn-success" type="button">
+                <button class="btn btn-success" type="button" @click="searchProducts">
                   <i class="bi bi-search-heart-fill"></i>
                 </button>
                 <button @click="isTelaPdvVisible = true">Voltar</button>
@@ -120,15 +121,18 @@ export default {
         });
     },
     loadProducts() {
-      axios
-        .get("http://localhost:3000/products")
-        .then((response) => {
-          this.produtos = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      if (!this.isTelaPdvVisible) {
+        axios
+          .get("http://localhost:3000/products")
+          .then((response) => {
+            this.produtos = response.data;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     },
+
     deleteProduct(id) {
       axios
         .delete(`http://localhost:3000/products/${id}`)
@@ -140,6 +144,7 @@ export default {
           console.error(error);
         });
     },
+
     searchProducts() {
       if (this.searchQuery.trim() !== "") {
         axios
@@ -152,14 +157,13 @@ export default {
             console.error(error);
           });
       } else {
-        this.produtos = []; // Limpar os produtos se a consulta estiver vazia
-        this.isTelaPdvVisible = true; // Exibir a tela de cadastro de produtos
+        this.loadProducts(); // Limpar os produtos se a consulta estiver vazia
+         // Exibir a tela de cadastro de produtos
       }
     },
-  },
-
-  mounted() {
-    this.loadProducts();
+    mounted() {
+      this.loadProducts();
+    },
   },
 };
 </script>
