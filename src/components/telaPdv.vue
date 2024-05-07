@@ -97,6 +97,7 @@
                       <th class="text-start" style="width: 50%">Produto</th>
                       <th class="text-center" style="width: 10%">Unid.Venda</th>
                       <th class="text-left" style="width: 10%">ValorVenda</th>
+                      <th class="text-left" style="width: 10%">#</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -106,6 +107,8 @@
                       <td>{{ produto.descricao }}</td>
                       <td>{{ produto.unidadeMedida }}</td>
                       <td>{{ produto.valor }}</td>
+                      <td class="text-center"><button><i class="bi bi-pencil-square"></i></button></td>
+
                     </tr>
                   </tbody>
                 </table>

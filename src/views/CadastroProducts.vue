@@ -6,7 +6,7 @@
         <form @submit.prevent="submitForm">
           <div class="form-group">
             <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" v-model="descricao" required />
+            <input type="text" id="descricao" v-model="descricao"/>
           </div>
           <div class="form-group">
             <label for="unidade">Unidade de Medida:</label>
@@ -46,7 +46,7 @@
                   <td class="text-center">{{ produto.unidadeMedida }}</td>
                   <td class="text-left">{{ produto.valor }}</td>
                   <td class="text-center"><button><i class="bi bi-pencil-square"></i></button></td>
-                  <td class="text-center"><button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button></td>
+                  <td class="text-center"><button class="btn btn-danger" @click="deleteProduct(produto.id)"><i class="bi bi-trash3-fill"></i></button></td>
                 </tr>
               </tbody>
             </table>
@@ -104,7 +104,18 @@ export default {
         .catch((error) => {
           console.error(error);
         });
-      }
+      },
+    deleteProduct(id) {
+      axios
+        .delete(`http://localhost:3000/products/${id}`)
+        .then((response) => {
+          console.log(response.data);
+          this.loadProducts();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
   mounted() {
     this.loadProducts();
