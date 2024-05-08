@@ -69,11 +69,8 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          this.descricao = "";
-          this.unidadeMedida = "";
-          this.valor = "";
-          this.codigoInterno = "";
-          this.codigoBarras = "";
+          this.$router.push("/ListProducts");
+          alert("Cadastrado com sucesso!");
         })
         .catch((error) => {
           console.error(error);
