@@ -104,32 +104,25 @@ export default {
       if (this.searchQuery.trim() !== "") {
         const searchQueryAsNumber = parseInt(this.searchQuery, 10);
 
-        if (!isNaN(searchQueryAsNumber)) {
-          axios
-            .get(`http://localhost:3000/products`)
-            .then((response) => {
-              const filteredProducts = response.data.filter((product) => {
-                return String(product.id).includes(this.searchQuery);
-              });
-              this.produtos = filteredProducts;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        } else {
-          axios
-            .get(`http://localhost:3000/products?search=${this.searchQuery}`)
-            .then((response) => {
-              this.produtos = response.data;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        }
+        const filteredProducts = this.produtos.filter((product) => {
+          return (
+            String(product.codigoInterno).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            String(product.codigoBarras).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            String(product.descricao).toLowerCase().includes(this.searchQuery.toLowerCase())
+          );
+        }).sort((a, b) => {
+          if (a.codigoInterno.toLowerCase() === this.searchQuery.toLowerCase()) return -1;
+          if (b.codigoInterno.toLowerCase() === this.searchQuery.toLowerCase()) return 1;
+          if (a.codigoBarras.toLowerCase() === this.searchQuery.toLowerCase()) return -1;
+          if (b.codigoBarras.toLowerCase() === this.searchQuery.toLowerCase()) return 1;
+          return 0;
+        });
+        this.produtos = filteredProducts;
       } else {
         this.loadProducts();
       }
     },
+
     mounted() {
       this.loadProducts();
     },
