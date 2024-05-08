@@ -14,6 +14,14 @@
         <label for="valor">Valor:</label>
         <input type="text" id="valor" v-model="valor" required />
       </div>
+      <div class="form-group">
+        <label for="codigoInterno">Codigo Interno:</label>
+        <input type="text" id="codigoInterno" v-model="codigoInterno" required />
+      </div>
+      <div class="form-group">
+        <label for="codigoBarras">codigoBarras:</label>
+        <input type="text" id="codigoBarras" v-model="codigoBarras" required />
+      </div>
       <div class="d-flex gap-3">
         <button type="submit">Cadastrar Produto</button>
         <router-link to="/ListProducts" class="btn btn-success"
@@ -35,6 +43,8 @@ export default {
       descricao: "",
       unidadeMedida: "",
       valor: "",
+      codigoInterno: "",
+      codigoBarras: "",
     };
   },
   methods: {
@@ -45,12 +55,16 @@ export default {
           descricao: this.descricao,
           unidadeMedida: this.unidadeMedida,
           valor: this.valor,
+          codigoInterno: this.codigoInterno,
+          codigoBarras: this.codigoBarras,
         })
         .then((response) => {
           console.log(response.data);
           this.descricao = "";
           this.unidadeMedida = "";
           this.valor = "";
+          this.codigoInterno = "";
+          this.codigoBarras = "";
         })
         .catch((error) => {
           console.error(error);

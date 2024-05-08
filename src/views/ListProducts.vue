@@ -1,60 +1,66 @@
 <template>
- <div class="container mt-4">
-        <div class="card-header">
-          <div class="input-group gap-4">
-            <input
-              type="text"
-              class="form-control text-start"
-              placeholder="Código ID, Código Interno, Descrição, Código de Barra"
-              v-model="searchQuery"
-              @keypress.enter="searchProducts"
-              autofocus="true"
-            />
-            <div class="input-group-append">
-              <div class="d-flex gap-3">
-                <button
-                  class="btn btn-success"
-                  type="button"
-                  @click="searchProducts"
-                >
-                  <i class="bi bi-search-heart-fill"></i>
-                </button>
-                <router-link to="/cadastroProducts" class="btn btn-warning">Voltar</router-link>
-              </div>
-            </div>
+  <div class="container mt-4">
+    <div class="card-header">
+      <div class="input-group gap-4">
+        <input
+          type="text"
+          class="form-control text-start"
+          placeholder="Código ID, Código Interno, Descrição, Código de Barra"
+          v-model="searchQuery"
+          @keypress.enter="searchProducts"
+          autofocus
+        />
+        <div class="input-group-append">
+          <div class="d-flex gap-3">
+            <button
+              class="btn btn-success"
+              type="button"
+              @click="searchProducts"
+            >
+              <i class="bi bi-search-heart-fill"></i>
+            </button>
+            <router-link to="/cadastroProducts" class="btn btn-warning"
+              >Voltar</router-link
+            >
           </div>
         </div>
-        <div
-          class="card-body mt-3 table-responsive"
-          style="max-height: 500px; overflow-y: auto; overflow-x: hidden"
-        >
-          <table class="table table-bordered table-nowrap">
-            <thead style="position: sticky; top: 0; z-index: 1">
-              <tr>
-                <th class="text-center" style="width: 5%">Código</th>
-                <th class="text-start" style="width: 30%">Produto</th>
-                <th class="text-center" style="width: 5%">Unidade</th>
-                <th class="text-left" style="width: 5%">Valor</th>
-                <th class="text-center" style="width: 5%">#</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Linhas da tabela - Aqui você pode iterar sobre os produtos e exibi-los -->
-              <tr v-for="(produto, index) in produtos" :key="index">
-                <td class="text-center">{{ produto.id }}</td>
-                <td>{{ produto.descricao }}</td>
-                <td class="text-center">{{ produto.unidadeMedida }}</td>
-                <td class="text-left">{{ produto.valor }}</td>
-                <td class="text-center">
-                  <button class="btn btn-danger" @click="deleteProduct(produto.id)">
-                    <i class="bi bi-trash3-fill"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
- </div>
+      </div>
+    </div>
+    <div
+      class="card-body mt-3 table-responsive"
+      style="max-height: 500px; overflow-y: auto; overflow-x: hidden"
+    >
+      <table class="table table-bordered table-nowrap">
+        <thead style="position: sticky; top: 0; z-index: 1">
+          <tr>
+            <th class="text-center" style="width: 10%">Código</th>
+            <th class="text-center" style="width: 10%">Código Interno</th>
+            <th class="text-center" style="width: 10%">Código Barras</th>
+            <th class="text-start" style="width: 30%">Produto</th>
+            <th class="text-center" style="width: 10%">Unidade</th>
+            <th class="text-left" style="width: 10%">Valor</th>
+            <th class="text-center" style="width: 10%">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linhas da tabela - Aqui você pode iterar sobre os produtos e exibi-los -->
+          <tr v-for="(produto, index) in produtos" :key="index">
+            <td class="text-center">{{ produto.id }}</td>
+            <td class="text-center">{{ produto.codigoInterno }}</td>
+            <td class="text-center">{{ produto.codigoBarras }}</td>
+            <td>{{ produto.descricao }}</td>
+            <td class="text-center">{{ produto.unidadeMedida }}</td>
+            <td class="text-left">{{ produto.valor }}</td>
+            <td class="text-center">
+              <button class="btn btn-danger" @click="deleteProduct(produto.id)">
+                <i class="bi bi-trash3-fill"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -96,18 +102,32 @@ export default {
 
     searchProducts() {
       if (this.searchQuery.trim() !== "") {
-        axios
-          .get(`http://localhost:3000/products?search=${this.searchQuery}`)
-          .then((response) => {
-            this.produtos = response.data;
-            this.isTelaPdvVisible = false; // Ocultar a tela de cadastro de produtos
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+        const searchQueryAsNumber = parseInt(this.searchQuery, 10);
+
+        if (!isNaN(searchQueryAsNumber)) {
+          axios
+            .get(`http://localhost:3000/products`)
+            .then((response) => {
+              const filteredProducts = response.data.filter((product) => {
+                return String(product.id).includes(this.searchQuery);
+              });
+              this.produtos = filteredProducts;
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        } else {
+          axios
+            .get(`http://localhost:3000/products?search=${this.searchQuery}`)
+            .then((response) => {
+              this.produtos = response.data;
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
       } else {
-        this.loadProducts(); // Limpar os produtos se a consulta estiver vazia
-        // Exibir a tela de cadastro de produtos
+        this.loadProducts();
       }
     },
     mounted() {
