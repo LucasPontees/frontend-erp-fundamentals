@@ -1,4 +1,4 @@
-# make_your-burger
+# ERP-Fundamentals
 
  <div align="center">
     <img width="500px" src="public/readme.png" alt="make-your-burger" />

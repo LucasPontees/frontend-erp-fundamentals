@@ -1,6 +1,6 @@
 <template>
     <footer id="footer">
-        <p>Make Your Burger &copy; 2024</p>
+        <p>ERP Fundamentals &copy; 2024</p>
     </footer>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <div>
     <Navbar :logo="logo_src" :alt="app_name" />
-    <router-view :mostrarRodape="exibirRodape"/>
-    <Footer v-if="exibirRodape"/>
+    <router-view :show_footer="display_footer"/>
+    <Footer v-if="display_footer"/>
   </div>
 </template>
 
@@ -18,15 +18,15 @@ export default {
   data() {
     return {
       logo_src: "/img/logo.png",
-      app_name: "Make Your Burger",
-      exibirRodape: true
+      app_name: "ERP Fundamentals",
+      display_footer: true
     }
   },
   watch: {
     $route() {
       const path = this.$route.path;
 
-      this.exibirRodape = !(path === '/Pdv' || path === '/SearchProductPdv');
+      this.display_footer = !(path === '/Pdv' || path === '/SearchProductPdv');
     }
   }
 }

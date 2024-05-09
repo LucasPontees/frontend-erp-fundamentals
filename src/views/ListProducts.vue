@@ -44,15 +44,15 @@
         </thead>
         <tbody>
           <!-- Linhas da tabela - Aqui você pode iterar sobre os produtos e exibi-los -->
-          <tr v-for="(produto, index) in produtos" :key="index">
-            <td class="text-center">{{ produto.id }}</td>
-            <td class="text-center">{{ produto.codigoInterno }}</td>
-            <td class="text-center">{{ produto.codigoBarras }}</td>
-            <td>{{ produto.descricao }}</td>
-            <td class="text-center">{{ produto.unidadeMedida }}</td>
-            <td class="text-left">{{ produto.valor }}</td>
+          <tr v-for="(product, index) in products" :key="index">
+            <td class="text-center">{{ product.id }}</td>
+            <td class="text-center">{{ product.internal_code }}</td>
+            <td class="text-center">{{ product.ean_code }}</td>
+            <td>{{ product.description }}</td>
+            <td class="text-center">{{ product.unit_of_meansure }}</td>
+            <td class="text-left">{{ product.sale_value }}</td>
             <td class="text-center">
-              <button class="btn btn-danger" @click="deleteProduct(produto.id)">
+              <button class="btn btn-danger" @click="deleteProduct(product.id)">
                 <i class="bi bi-trash3-fill"></i>
               </button>
             </td>
@@ -70,22 +70,20 @@ export default {
   name: "ListProducts",
   data() {
     return {
-      produtos: [],
+      products: [],
       searchQuery: "",
     };
   },
   methods: {
     loadProducts() {
-      if (!this.isTelaPdvVisible) {
         axios
           .get("http://localhost:3000/products")
           .then((response) => {
-            this.produtos = response.data;
+            this.products = response.data;
           })
           .catch((error) => {
             console.error(error);
           });
-      }
     },
 
     deleteProduct(id) {
@@ -102,22 +100,21 @@ export default {
 
     searchProducts() {
       if (this.searchQuery.trim() !== "") {
-        const searchQueryAsNumber = parseInt(this.searchQuery, 10);
 
-        const filteredProducts = this.produtos.filter((product) => {
+        const filteredProducts = this.products.filter((product) => {
           return (
-            String(product.codigoInterno).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            String(product.codigoBarras).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            String(product.descricao).toLowerCase().includes(this.searchQuery.toLowerCase())
+            String(product.internal_code).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            String(product.ean_code).toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            String(product.description).toLowerCase().includes(this.searchQuery.toLowerCase())
           );
         }).sort((a, b) => {
-          if (a.codigoInterno.toLowerCase() === this.searchQuery.toLowerCase()) return -1;
-          if (b.codigoInterno.toLowerCase() === this.searchQuery.toLowerCase()) return 1;
-          if (a.codigoBarras.toLowerCase() === this.searchQuery.toLowerCase()) return -1;
-          if (b.codigoBarras.toLowerCase() === this.searchQuery.toLowerCase()) return 1;
+          if (a.internal_code.toLowerCase() === this.searchQuery.toLowerCase()) return -1;
+          if (b.internal_code.toLowerCase() === this.searchQuery.toLowerCase()) return 1;
+          if (a.ean_code.toLowerCase() === this.searchQuery.toLowerCase()) return -1;
+          if (b.ean_code.toLowerCase() === this.searchQuery.toLowerCase()) return 1;
           return 0;
         });
-        this.produtos = filteredProducts;
+        this.products = filteredProducts;
       } else {
         this.loadProducts();
       }

@@ -4,11 +4,11 @@
     <form @submit.prevent="submitForm" class="form-group d-flex flex-column gap-3">
       <div class="form-control ">
         
-      <label for="descricao">Descrição:</label>
-      <input type="text" id="descricao" v-model="descricao" required class="form-control" />
+      <label for="description">Descrição:</label>
+      <input type="text" id="description" v-model="description" required class="form-control" />
 
-      <label for="unidade">Unidade de Medida:</label>
-      <select id="unidade" v-model="unidadeMedida" required class="form-control">
+      <label for="unit_of_meansure">Unidade de Medida:</label>
+      <select id="unit_of_meansure" v-model="unit_of_meansure" required class="form-control">
         <option value="kg">Kilograma (kg)</option>
         <option value="g">Grama (g)</option>
         <option value="l">Litro (l)</option>
@@ -16,11 +16,11 @@
         <option value="cm">Centimetro (cm)</option>
       </select>
 
-      <label for="valor">Valor:</label>
-      <input type="text" id="valor" v-model="valor" required class="form-control" />
+      <label for="sale_value">Valor:</label>
+      <input type="decimal" id="sale_value" v-model="sale_value" required class="form-control" />
 
-      <label for="codigoInterno">Codigo Interno:</label>
-      <select id="codigoInterno" v-model="codigoInterno" required class="form-control">
+      <label for="internal_code">Codigo Interno:</label>
+      <select id="internal_code" v-model="internal_code" required class="form-control">
         <option value="atx-01">Atx-01</option>
         <option value="atx-02">Atx-02</option>
         <option value="atx-03">Atx-03</option>
@@ -28,8 +28,8 @@
         <option value="atx-05">Atx-05</option>
       </select>
       
-      <label for="codigoBarras">codigoBarras:</label>
-      <input type="text" id="codigoBarras" v-model="codigoBarras" required class="form-control" />
+      <label for="ean_code">Cód.Barras:</label>
+      <input type="text" id="ean_code" v-model="ean_code" required class="form-control" />
       </div>
       <div class="d-flex justify-content-end gap-3">
         <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
@@ -45,15 +45,15 @@
 import axios from "axios";
 
 export default {
-  name: "CadastroProducts",
+  name: "CreateProduct",
   data() {
     return {
       id: "",
-      descricao: "",
-      unidadeMedida: "",
-      valor: "",
-      codigoInterno: "",
-      codigoBarras: "",
+      description: "",
+      unit_of_meansure: "",
+      sale_value: "",
+      internal_code: "",
+      ean_code: "",
     };
   },
   methods: {
@@ -61,11 +61,11 @@ export default {
       axios
         .post("http://localhost:3000/products", {
           id: this.id,
-          descricao: this.descricao,
-          unidadeMedida: this.unidadeMedida,
-          valor: this.valor,
-          codigoInterno: this.codigoInterno,
-          codigoBarras: this.codigoBarras,
+          description: this.description,
+          unit_of_meansure: this.unit_of_meansure,
+          sale_value: this.sale_value,
+          internal_code: this.internal_code,
+          ean_code: this.ean_code,
         })
         .then((response) => {
           console.log(response.data);
