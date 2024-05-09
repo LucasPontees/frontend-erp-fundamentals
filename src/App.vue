@@ -1,7 +1,9 @@
 <template>
-  <Navbar :logo="logo_src" :alt="app_name"/>
-  <router-view/>
-  <Footer />
+  <div>
+    <Navbar :logo="logo_src" :alt="app_name" />
+    <router-view :mostrarRodape="exibirRodape"/>
+    <Footer v-if="exibirRodape"/>
+  </div>
 </template>
 
 <script>
@@ -15,7 +17,13 @@ export default {
   data() {
     return {
       logo_src: "/img/logo.png",
-      app_name: "Make Your Burger"
+      app_name: "Make Your Burger",
+      exibirRodape: true
+    }
+  },
+  watch: {
+    $route() {
+      this.exibirRodape = this.$route.path !== '/Pdv'
     }
   }
 }
@@ -23,19 +31,19 @@ export default {
 
 
 <style>
-*{
+* {
   font-family: Helvetica;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-.main-container{
+.main-container {
   margin: 50px;
   min-height: 250px;
 }
 
-h1{
+h1 {
   text-align: center;
   font-size: 42px;
   color: #222;

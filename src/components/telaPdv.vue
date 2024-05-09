@@ -1,6 +1,5 @@
 <template>
   <!-- Page Wrapper -->
-  <div class="page-wrapper">
     <div class="content container-fluid">
       <div v-show="isTelaPdvVisible">
         <div class="row" id="tela_pdv">
@@ -133,7 +132,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

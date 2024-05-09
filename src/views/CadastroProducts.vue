@@ -9,11 +9,11 @@
 
       <label for="unidade">Unidade de Medida:</label>
       <select id="unidade" v-model="unidadeMedida" required class="form-control">
-        <option value="kg">Kilogram (kg)</option>
-        <option value="g">Gram (g)</option>
-        <option value="l">Liter (l)</option>
-        <option value="m">Meter (m)</option>
-        <option value="cm">Centimeter (cm)</option>
+        <option value="kg">Kilograma (kg)</option>
+        <option value="g">Grama (g)</option>
+        <option value="l">Litro (l)</option>
+        <option value="m">Metro (m)</option>
+        <option value="cm">Centimetro (cm)</option>
       </select>
 
       <label for="valor">Valor:</label>
