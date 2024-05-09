@@ -3,17 +3,19 @@
     <div class="row" id="tela_pdv">
 
       <div class="col-lg-5 col-md-5" style="height: 65vh;">
-        <div class="card d-flex flex-column gap-3">
-          <router-link to="/SearchProductPdv" class="btn btn-primary mt-2">
+        <div class="card">
+          <router-link to="/SearchProductPdv" class="btn btn-primary mt-2 mx-3">
             <i class="fas fa-plus me-1"></i> F2 - Pesquisar produto
           </router-link>
-          <Inputs placeholder="Quantidade" />
-          <Inputs placeholder="Valor" disabled="true" />
-          <Inputs placeholder="Total" disabled="true" />
+          <div class="d-flex flex-column gap-3">
+            <Inputs placeholder="Quantidade" />
+            <Inputs placeholder="Valor" disabled="true" />
+            <Inputs placeholder="Total" disabled="true" />
+          </div>
         </div>
-        <div class="d-flex justify-content-center img-thumbnail">
-          <img src="/img/Burger.jpg" alt="" height="150px" width="auto" />
-        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <img class="animated bounceIn img-thumbnail" src="/img/no-product.jpg"
+          style="width: 280px; height: auto;" /></div>
       </div>
 
       <div class="col-lg-7 col-md-7" style="height: 65vh">
