@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-1">
     <div class="card-header">
       <div class="input-group gap-4">
         <input
@@ -19,7 +19,7 @@
             >
               <i class="bi bi-search-heart-fill"></i>
             </button>
-            <router-link to="/cadastroProducts" class="btn btn-warning"
+            <router-link to="/createProduct" class="btn btn-warning"
               >Voltar</router-link
             >
           </div>

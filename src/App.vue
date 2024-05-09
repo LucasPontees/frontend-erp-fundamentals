@@ -23,7 +23,9 @@ export default {
   },
   watch: {
     $route() {
-      this.exibirRodape = this.$route.path !== '/Pdv'
+      const path = this.$route.path;
+
+      this.exibirRodape = !(path === '/Pdv' || path === '/SearchProductPdv');
     }
   }
 }

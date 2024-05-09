@@ -1,21 +1,20 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import CadastroProducts from '@/views/CadastroProducts.vue'
-import CadastroUsers from '@/views/CadastroUsers.vue'
+import CreateProduct from '@/views/CreateProduct.vue'
 import ListProducts from '@/views/ListProducts.vue'
+import SearchProductPdv from '@/views/SearchProductPdv.vue'
 const routes = [
   {
     path: '/',
-    name: 'CadastroUsers',
-    component: CadastroUsers
+    name: 'reateProduct',
+    component: CreateProduct
   },
   {
-    path: '/CadastroProducts',
-    name: 'CadastroProducts',
+    path: '/CreateProduct',
+    name: 'CreateProduct',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "cadastroProducts" */ '../views/CadastroProducts.vue')
+    component: () => import(/* webpackChunkName: "cadastroProducts" */ '../views/CreateProduct.vue')
   },
   {
     path: '/pdv',
@@ -25,14 +24,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "pedidos" */ '../views/Pdv.vue')
   },
-  {
-    path: '/cadastroUsers',
-    name: 'cadastroUsers',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "cadastroUsers" */ '../views/CadastroUsers.vue')
-  },
+ 
   {
     path: '/ListProducts',
     name: 'ListProducts',
@@ -40,6 +32,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "ListProducts" */ '../views/ListProducts.vue')
+  },
+  {
+    path: '/SearchProductPdv',
+    name: 'SearchProductPdv',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "SearchProductPdv" */ '../views/SearchProductPdv.vue')
   },
 
 ]
