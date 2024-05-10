@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import CreateProduct from '@/views/CreateProduct.vue'
 import ListProducts from '@/views/ListProducts.vue'
 import SearchProductPdv from '@/views/SearchProductPdv.vue'
+import CreateUsers from '@/views/CreateUsers.vue'
 const routes = [
   {
     path: '/',
@@ -40,6 +41,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "SearchProductPdv" */ '../views/SearchProductPdv.vue')
+  },
+  {
+    path: '/CreateUsers',
+    name: 'CreateUsers',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "CreateUsers" */ '../views/CreateUsers.vue')
   },
 
 ]

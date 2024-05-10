@@ -1,6 +1,6 @@
 <template>
-    <footer id="footer">
-        <p>ERP Fundamentals &copy; 2024</p>
+    <footer>
+        <p id="footer">Fundamentos para Vue &copy; 2024 </p>
     </footer>
 </template>
 
@@ -13,20 +13,14 @@ export default {
 <style scoped>
 #footer {
     height: 30px;
-    background-color: #222;
-    border-top: 4px solid #111;
-    color: #FCBA03;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
+    position: static;;
     text-align: center;
     padding: 20px;
+    border-top: solid 1px #222;
 }
 </style>

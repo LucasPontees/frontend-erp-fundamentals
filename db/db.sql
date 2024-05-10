@@ -1,4 +1,4 @@
-INSERT INTO products (code_ean, description, unit_of_measure, sale_value)
+INSERT INTO products (code_ean, description, unit_of_meansure, sale_value)
 VALUES 
     ('1111111111111', 'Smartphone Android', 'UN', 799.99),
     ('2222222222222', 'Fone de Ouvido Bluetooth', 'UN', 99.99),

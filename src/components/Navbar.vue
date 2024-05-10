@@ -8,6 +8,7 @@
         <router-link  to="/" id="logo-url">
             <img  :src="logo" :alt="alt" id="logo">
         </router-link>
+        <router-link to="/CreateUsers">Criar Usuário</router-link>
         <router-link to="/createProduct">Cadastrar Produtos</router-link>
         <router-link to="/Pdv">Pdv</router-link>
     </nav>

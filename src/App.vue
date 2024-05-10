@@ -39,6 +39,7 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  
 }
 
 .main-container {
@@ -51,4 +52,5 @@ h1 {
   font-size: 42px;
   color: #222;
 }
+
 </style>
